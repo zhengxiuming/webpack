@@ -27,10 +27,17 @@
     "node-sass": "^4.5.3",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.5",
+    "react": "15.3.1",
+    "react-dom": "15.3.1",
     "sass": "^0.5.0",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "antd": "^2.10.4",
+    "babel-plugin-import": "^1.2.1"
   }
 }

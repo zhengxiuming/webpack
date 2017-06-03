@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 //Html自动生成
 var htmlWebpackPlugin=require("html-webpack-plugin");
 module.exports = {
@@ -9,7 +10,10 @@ module.exports = {
     //     page2:'',
     //     page3:''
     // },
-    entry: "./src/app.js",
+    entry: {
+        app:"./src/app.js",
+        react:'./src/react.js'
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'js/[name].bundle.js'
@@ -23,7 +27,7 @@ module.exports = {
               exclude:path.resolve(__dirname,'./node_modules'),
               include:path.resolve(__dirname,'./src'),
               query:{
-                  presets:["latest"]
+                  presets:["latest","react"]
               }
           },
           {
@@ -86,13 +90,24 @@ module.exports = {
           }
       ]
     },
+    resolve: {
+        extensions: [".js", ".jsx"]
+    },
     plugins:[
         //这里是html插件，根据入口文件，生成对应的html文件。html文件自动引入编译后的文件
         new htmlWebpackPlugin({
-            filename:'index.html',
+            filename:'app.html',
             template:'index.html',
             inject:'body',
-            //chunks:['page1'],chunks:['page2'],chunks:['page3']这个属性配置html引入对应的编译文件
+            chunks:['app']
+            // ,chunks:['page2'],chunks:['page3']这个属性配置html引入对应的编译文件
+        }),
+        new htmlWebpackPlugin({
+            filename:'react.html',
+            template:'react.html',
+            inject:'body',
+            chunks:['react']
+            // ,chunks:['page2'],chunks:['page3']这个属性配置html引入对应的编译文件
         }),
     ]
 };
